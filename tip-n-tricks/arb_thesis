@@ -1,0 +1,20 @@
+% 'Principle' environment 
+
+% Use to arbitraritly name text, then \ref it in the
+% text with it's label, displaying that arbitrary name.
+% (e.g. '\begin{principle}{name here}
+%               ...
+%       '\end{principle}
+
+\newtheorem{innercustomgeneric}{\customgenericname}
+\providecommand{\customgenericname}{}
+\newcommand{\newcustomtheorem}[2]{%
+  \newenvironment{#1}[1]
+  {%
+   \renewcommand\customgenericname{#2}%
+   \renewcommand\theinnercustomgeneric{##1}%
+   \innercustomgeneric
+  }
+  {\endinnercustomgeneric}
+}
+\newcustomtheorem{principle}{}

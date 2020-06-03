@@ -1,0 +1,9 @@
+% Define an environment for roman numeralled theses
+% e.g. \begin{thesis} will produce 'Thesis I' (if the first in the document).
+
+\newtheorem{thesis}{Thesis}
+\renewcommand\thethesis{\Roman{thesis}} 
+
+% version witout the word 'Thesis' at the beginning:
+\newtheorem{thesis*}{}
+\renewcommand\thethesis{\Roman{thesis}} 

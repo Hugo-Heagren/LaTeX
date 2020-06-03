@@ -1,0 +1,2 @@
+@default_files = ('format.tex');
+$out_dir = ".auxfiles"
