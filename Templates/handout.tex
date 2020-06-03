@@ -1,0 +1,134 @@
+% Preamble {{{1
+\documentclass[12pt]{article}
+
+% Packages {{{2 
+\usepackage{amsthm}
+\usepackage{ellipsis}
+\usepackage{environ}
+\usepackage{geometry}
+\usepackage{hyperref}
+\usepackage{import}
+\usepackage{lua-ul}
+\usepackage{setspace}
+% }}}2
+
+% Bibliography {{{2
+% Load BibLaTeX and specify all of its options. {{{3
+\usepackage[
+style=authoryear-ibid, % Boilerplate style which uses author-year style citations and bib-entries
+sorting=nyt,           % Sort the bibliography by name, then year, then title
+date=year,             % only use the year for the date in the bibliography
+url=false,             % (except for internet sources) don't include the url in the bibliography
+isbn=false,            % don't include the ISBN in the bibliography
+doi=false,             % don't include the ISBN in the bibliography
+autopunct=true,        % automatically scan ahead for punctuation which conflicts with the citation
+]{biblatex}
+% }}}3
+
+% Southampton style {{{3
+\renewcommand\newunitpunct{\addperiod\addspace} % Separate inidividual sections of each bibliogtrpahy entry with a comma and space.
+\renewcommand\postnotedelim{\addcolon\addspace} % Separate the cited work and date from the page number cited with a colon followed by a space.
+\DeclareFieldFormat{postnote}{#1}               % Suppress the 'p. ' from appearing in the parencites (as is default)
+
+% Defines which punctuation marks autopunct (In BibLaTeX) will look for when
+% scanning ahead for punctuaton after citations
+\DeclareAutoPunctuation{.,;:!?}
+% }}}3
+
+% Tell BibLaTeX where to find the bibliograph(y/ies)
+\addbibresource{~/.xapers/docs/*/bibtex}
+% }}}2
+
+% Page layout, sizing and style {{{2
+
+% Geometry {{{3
+\geometry{
+	a4paper,    % paper size a4
+	margin=1in, % 1" margins all round
+}
+
+\setlength{\parindent}{0em} % Don't indent paragraphs
+% }}}3
+
+% Theorem style (bold name, number and note, no punctuation) {{{3
+\newtheoremstyle{mytheoremstyle}% name of the style to be used
+  {}{}{}{}
+  {}
+  { }                       % no punctuation between head and body
+  { }                       % normal interword space between head and body
+  {\thmname{\textbf{#1}}    % Make theorem heading ('Theorem', 'Thesis' etc) bold
+   \thmnumber{ \textbf{#2}} % Make theorem number bold
+   \thmnote{ \textbf{#3}}   % Make theorem note (an arbitrary index) bold
+   }
+\theoremstyle{mytheoremstyle} % Actually USE the above style 
+% }}}3
+
+% Hyperlinks blue but not TOO blue! {{{3
+\hypersetup{
+    colorlinks=true,   % Colored links
+    urlcolor=blue      % Color of external links
+} % }}}3
+
+% }}}2
+
+% Command and Environments {{{2
+% 'Example' environment {{{3
+% counts in arabic numerals
+% Use for continuously arabic numbered examples or similar (e.g. steps in an argument)
+\newtheorem{example}{}
+% }}}3
+
+% 'Thesis' environments {{{3
+
+% 'thesis' {{{4
+% presents 'Thesis I', 'Thesis II' etc.
+\newtheorem{thesis}{Thesis}
+\renewcommand\thethesis{\Roman{thesis}} 
+% }}}4
+
+% 'thesis*' {{{4
+% version witout the word 'Thesis' at the beginning (presents 'I', 'II', etc.)
+\newtheorem{thesis*}{}
+\renewcommand\thethesis{\Roman{thesis}} 
+% }}}4
+
+% }}}3
+
+% 'Principle' environment {{{3
+
+% Use to arbitraritly name text, then \ref it in the
+% text with it's label, displaying that arbitrary name.
+% (e.g. '\begin{principle}{name here}
+%               ...
+%       '\end{principle}
+
+\newtheorem{innercustomgeneric}{\customgenericname}
+\providecommand{\customgenericname}{}
+\newcommand{\newcustomtheorem}[2]{%
+  \newenvironment{#1}[1]
+  {%
+   \renewcommand\customgenericname{#2}%
+   \renewcommand\theinnercustomgeneric{##1}%
+   \innercustomgeneric
+  }
+  {\endinnercustomgeneric}
+}
+\newcustomtheorem{principle}{}
+% }}}3
+
+% }}}2
+
+% Attributes {{{2
+\title{<Title>}
+\date{}
+\author{Hugo Heagren} 
+
+% }}}2
+
+% }}}1
+
+\begin{document}
+
+\maketitle
+	
+\end{document}
