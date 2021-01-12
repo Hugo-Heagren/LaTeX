@@ -1,0 +1,41 @@
+% Preamble {{{1
+\documentclass[12pt]{article} 
+
+% Packages {{{2 
+\usepackage{setspace}
+\usepackage{import}
+\usepackage{geometry}
+\usepackage{environ}
+% }}}2
+
+% Page layout, sizing and style {{{2
+\geometry{
+	a4paper,    % paper size a4
+	margin=0.9in, % 1" margins all round
+}
+\setlength{\parskip}{1em}   % Makes the distance between paragraphs twice the heigth of a standard M
+\setlength{\parindent}{0em} % Don't indent paragraphs
+
+% }}}2
+
+% Wordcount command {{{2
+\immediate\write18{texcount -sum -1 -total -inc personalStatement.tex > count.txt}
+\newcommand\wordcount{\input{count.txt}words}
+% }}}2
+
+% Attributes {{{2
+\title{}
+\author{}
+\date{}
+% }}}2
+
+% }}}1
+
+\begin{document} 
+\begin{center}
+\LARGE{}Statement of Purpose\\
+\large Hugo Heagren\\
+\wordcount{}
+\end{center}
+\import{./}{personalStatement.tex}
+\end{document}
