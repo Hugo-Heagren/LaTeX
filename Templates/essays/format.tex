@@ -138,13 +138,14 @@ autopunct=true,        % automatically scan ahead for punctuation which conflict
 \thispagestyle{myheadings} % Force first page to have the same pagestyle as all the others (numbering and heading etc.), otherwise \maketitle resets it. 
 % Revisions (if it exsits) {{{1
 \IfFileExists{./revisions.tex}{
-	\textit{
-	\section*{Revisions}
-	\import{./}{revisions.tex}
-	}   % end italics
+	\renewcommand{\abstractname}{Revisions} % make the section named revisions
+	\begin{abstract}
+	\singlespacing{} % single spaced (only affects wthin the environment)
+	\import{./}{revisions.tex}     
+	\end{abstract}
 	}{} % end if statement
 % }}}1
-
+%
 % Main essay {{{1
 \section*{\phantom{Essay}}
 \import{./}{essay.tex}
